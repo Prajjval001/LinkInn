@@ -11,6 +11,7 @@ import Widgets from './Widgets';
 
 function App() {
   const user = useSelector(selectUser);
+  // const user = false;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,16 +34,20 @@ function App() {
 
 
   return (
-    <div className="app">
-     <Header />
+    <div className="">
+    
 
      {!user ? (
       <Login />
       ) : (
-        <div className='app__body'>
+        <div className='app'>
+           <Header />
+          <div className='app__body'>
+         
           <Sidebar />
           <Feed />
           <Widgets />
+          </div>
         </div>
       )}
       </div>

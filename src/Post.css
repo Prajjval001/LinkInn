@@ -8,6 +8,7 @@
 .post__header {
     display: flex;
     margin-bottom: 10px;
+    gap:1rem;
 }
 
 .post__info > p {

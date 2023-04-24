@@ -11,6 +11,7 @@ function Login() {
     const [name, setName] = useState("");
     const [profilePic, setProfilePic] = useState("");
     const dispatch = useDispatch();
+    const [signup , setSignup] = useState(false);
 
     const loginToApp = (e) => {
         e.preventDefault();
@@ -26,7 +27,8 @@ function Login() {
         }).catch((error) => alert(error));
     };
 
-    const register = () => {
+    const register = (e) => {
+        e.preventDefault();
         if (!name) {
             return alert("Please enter a Full name!")
         }
@@ -48,11 +50,11 @@ function Login() {
         } ).catch(error => alert(error));
     };
 
-  return (
-    <div className='login'>
+  
+  return (!signup ? <div className ='login'>
        <img src='https://www.freepnglogos.com/uploads/linkedin-logo-transparent-png-16.png' alt='' />
 
-       <form>
+       <form className = '' >
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="full name (required if registering)" type='text' />
 
         <input value={profilePic} onChange={(e) => setProfilePic(e.target.value)} placeholder='Profile pic URL (optional)' type='text'/>
@@ -61,14 +63,34 @@ function Login() {
 
         <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password'/>
 
-        <button type='submit' onClick={loginToApp}> Sign In </button>
+        <button type='submit' onClick={register}> Sign In </button>
        </form>
 
-       <p>Not a member?{" "}
-        <span className='login__register' onClick={register}>Register Now</span>
+       <p>Already a member?{" "}
+        <span className='login__register' onClick={e=>setSignup(true)} >Log In</span>
        </p>
     </div>
+     :
+    <div className='login'>
+         <img src='https://www.freepnglogos.com/uploads/linkedin-logo-transparent-png-16.png' alt='' />
+
+        <form>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' type='email'/>
+
+        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password'/>
+        <button type='submit' onClick={loginToApp}> Sign In </button>
+        </form>
+        <p>Not a member?{" "}
+        <span className='login__register' onClick={e=>{setSignup(false)}}> Sign Up</span>
+       </p>
+       
+    </div>
   );
+
+
+
+
+
 }
 
 export default Login;

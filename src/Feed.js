@@ -12,7 +12,7 @@ import { db }  from './firebase';
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
 import FlipMove from 'react-flip-move';
-
+import { Avatar } from '@mui/material';
 
 function Feed() {
     const user = useSelector(selectUser);
@@ -47,11 +47,14 @@ function Feed() {
 
   return (
     <div className='feed'>
+        
         <div className="feed__inputContainer">
+       
             <div className="feed__input">
-                <CreateIcon />
+                <Avatar src={user.photoUrl}></Avatar>
                 <form>
-                    <input value={input} onChange={e => setInput(e.target.value)} type="text" />
+                
+                    <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder='Post something'/>
                     <button onClick= {sendPost} type='submit'>Send</button>
                 </form>
             </div>
