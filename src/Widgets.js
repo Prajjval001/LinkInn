@@ -1,23 +1,46 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import './Widgets.css';
 import InfoIcon from '@mui/icons-material/Info';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import {blueGrey } from '@mui/material/colors';
 
 function Widgets() {
 
-    const newsArticle = (heading, subtitle) => (
+
+
+    const [news , setNews] = useState([]); // news + clickscount = news[i] 
+    
+    const newsArticle = (heading, url) => (
         <div className='widgets__article'>
            <div className="widgets__articleleft">
             <FiberManualRecordIcon />
             </div> 
 
            <div className="widgets__articleright">
-            <h4>{heading}</h4>
-            <p>{subtitle}</p>
+           <h5> <a href = {url} style={{textDecoration:`none` ,color:`black`}} > {heading} </a> </h5>
+            <p></p>
            </div> 
 
         </div>
     )
+
+    
+    useEffect(()=>{
+
+        console.log('Fetching news...')
+        fetch(`https://newsapi.org/v2/everything?q=jobs&pageSize=6&page=1&apiKey=0a7e28fae8744922b671a61e11b4cd41`).then((res) => res.json()).then((data) => {
+        const fetchednews = [];
+        console.log(data);
+         for(let i = 0;i<6;i++){
+          fetchednews[i] = newsArticle(data.articles[i].title , data.articles[i].url)
+         }
+         console.log(fetchednews);
+         setNews(fetchednews);
+        }).catch((err) => {console.log(err)});
+
+    },[])
 
   return (
     <div className='widgets'>
@@ -25,12 +48,14 @@ function Widgets() {
         <h2>LinkedIn News</h2>
         <InfoIcon />
       </div>
-      {newsArticle('Tech Developer is in league', 'Top news - 7456 reader')}
-      {newsArticle( 'MOONlighting: Company Employees Update', 'Top news -6530 readers')}
-      {newsArticle('North Korea’s crypto-nukes & this weeks top tech story', 'Top news - 456 reader')}
-      {newsArticle( 'Bitcoin miners under pressure as the network’s mining difficulty hits all-time high', 'Top news -530 readers')}
-      {newsArticle('Google is hiring software developers', 'Top news - 9025 reader')}
-      {newsArticle( 'Apple Confirms i-Phone15 X-Pro-Max', 'Top news -730 readers')}
+      { news.length === 0 ?  (<Box sx={{ width: '100%' }}>
+      <LinearProgress/>
+    </Box> ): news }
+    {/* <Box sx={{ width: '100%' }}>
+      <LinearProgress />
+    </Box>  */}
+
+
     </div>
   );
 };
