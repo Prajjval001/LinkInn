@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import 'firebase/compat/firestore';
-
+import {getAuth , GoogleAuthProvider} from "firebase/auth";
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,5 +18,5 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebaseApp.firestore();
-
-export { db , auth };
+const googleProvider = new GoogleAuthProvider();
+export { db , auth , googleProvider };

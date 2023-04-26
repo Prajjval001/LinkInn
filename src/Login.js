@@ -2,7 +2,8 @@ import { display } from '@mui/system';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from './features/userSlice';
-import { auth } from './firebase';
+import { auth , googleProvider} from './firebase';
+import {signInWithPopup}  from "firebase/auth"
 import './Login.css'
 
 function Login() {
@@ -26,6 +27,14 @@ function Login() {
           );
         }).catch((error) => alert(error));
     };
+
+    const signInwithGoogle = async() =>{
+        try{
+            await signInWithPopup(auth,googleProvider);
+        }catch(err){
+            alert(err.message);
+        }
+    }
 
     const register = (e) => {
         e.preventDefault();
@@ -63,9 +72,12 @@ function Login() {
 
         <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password'/>
 
-        <button type='submit' onClick={register}> Sign In </button>
+        <button type='submit' onClick={register}> Sign Up </button>
        </form>
-
+       <br></br>
+       <div style={{width:'50%',height:'1px' , backgroundColor:'black',margin:'1px 1px 1px 1px' }}></div>
+        <p><b>  Or </b></p>
+        <div id = 'google' onClick = {signInwithGoogle}> </div>
        <p>Already a member?{" "}
         <span className='login__register' onClick={e=>setSignup(true)} >Log In</span>
        </p>
@@ -80,6 +92,10 @@ function Login() {
         <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password'/>
         <button type='submit' onClick={loginToApp}> Sign In </button>
         </form>
+        <br></br>
+       <div style={{width:'50%',height:'1px' , backgroundColor:'black',margin:'1px 1px 1px 1px' }}></div>
+        <p><b>  Or </b></p>
+        <div id = 'google' onClick = {signInwithGoogle}> </div>
         <p>Not a member?{" "}
         <span className='login__register' onClick={e=>{setSignup(false)}}> Sign Up</span>
        </p>
