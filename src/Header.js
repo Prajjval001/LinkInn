@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.css'
+import './styles/Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import HeaderOption from './HeaderOption.js';
 import HomeIcon from '@mui/icons-material/Home';

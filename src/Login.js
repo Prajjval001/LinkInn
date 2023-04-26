@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { login } from './features/userSlice';
 import { auth , googleProvider} from './firebase';
 import {signInWithPopup}  from "firebase/auth"
-import './Login.css'
+import './styles/Login.css'
 
 function Login() {
     const [email, setEmail] = useState("");

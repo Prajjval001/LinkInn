@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Sidebar.css";
+import "./styles/Sidebar.css";
 import {Avatar} from "@mui/material";
 import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
@@ -14,6 +14,8 @@ function Sidebar() {
             <p>{topic}</p>
         </div>
     )
+
+    
    return (
     <div className='sidebar'>
         <div className='sidebar__top'>

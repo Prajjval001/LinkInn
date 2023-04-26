@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react';
-import './Widgets.css';
+import './styles/Widgets.css';
 import InfoIcon from '@mui/icons-material/Info';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Box from '@mui/material/Box';
@@ -19,7 +19,7 @@ function Widgets() {
             </div> 
 
            <div className="widgets__articleright">
-           <h5> <a href = {url} style={{textDecoration:`none` ,color:`black`}} > {heading} </a> </h5>
+           <h5> <a href = {url} style={{textDecoration:`none` ,color:`black`}} target='_blank'> {heading} </a> </h5>
             <p></p>
            </div> 
 
