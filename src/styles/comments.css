@@ -17,17 +17,16 @@ outline: none;
 
 
 .post_cmnts > button{
-  
-    width:2rem;
-    height:1rem;
+    padding:0.5rem;
     border:none;
     border-radius:2rem;
-    background-image:url('');
-    background-color: rgb(187, 166, 166);
+    cursor : default;
     position:relative;
     right:2rem;
-    top:0.8rem;
-
+    width:4rem;
+}
+.post_cmnts > button:hover{
+    background-color:rgb(177, 177, 227)
 }
 
 .comments{
@@ -39,7 +38,7 @@ outline: none;
     font-size:12px;
     display:flex;
     flex-direction: row;
-    row-gap: 2rem;
+    gap: 1rem;
     margin:0.5rem;
     padding:0.5rem;
 

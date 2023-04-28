@@ -19,6 +19,9 @@
 
 .post__body {
     overflow-wrap: anywhere;
+    background-color: rgba(210, 228, 238, 0.666);
+    border-radius:0.5rem;
+    padding:0.5rem;
 }
 
 .post__info > h2 {

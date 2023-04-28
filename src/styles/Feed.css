@@ -40,5 +40,90 @@
 .feed__inputOptions {
     display: flex;
     justify-content: space-evenly;
+}
+.post_board{
+    padding:1rem;
+}
 
+
+.feed_photo_input{
+    display:none;
+}
+.feed_photo_input > input{
+    height:2rem;
+    width:97%;
+    border:1px solid rgb(230, 220, 220);
+    border-radius:1rem;
+    margin:0.5rem;
+}
+.feed_photo_input > button{
+    width:3rem;
+    height:2rem;
+    border:none;
+    background-color: aliceblue;
+}
+.feed_photo_input  > ::placeholder{
+    padding-left:1rem;
+}
+
+
+.feed_video_input{
+    display:none;
+}
+.feed_video_input > input{
+    height:2rem;
+    width:97%;
+    border:1px solid rgb(230, 220, 220);
+    border-radius:1rem;
+    margin:0.5rem;
+}
+.feed_video_input > button{
+    width:3rem;
+    height:2rem;
+    border:none;
+    background-color: aliceblue;
+}
+.feed_video_input > ::placeholder{
+    padding-left:1rem;
+}
+
+
+.feed_Event_input{
+    display:none;
+}
+.feed_Event_input > input{
+    height:2rem;
+    width:97%;
+    border:1px solid rgb(230, 220, 220);
+    border-radius:1rem;
+    margin:0.5rem;
+}
+.feed_Event_input  > button{
+    width:3rem;
+    height:2rem;
+    border:none;
+    background-color: aliceblue;
+}
+.feed_Event_input  > ::placeholder{
+    padding-left:1rem;
+}
+
+.feed_Article_input{
+    display:none;
+}
+.feed_Article_input > textarea{
+    height:10rem;
+    width:97%;
+    border:1px solid rgb(230, 220, 220);
+    border-radius:1rem;
+    padding:0.5rem;
+}
+.feed_Article_input > button{
+    width:3rem;
+    height:2rem;
+    border:none;
+    background-color: aliceblue;
+}
+.feed_Article_input > ::placeholder{
+    padding-left:1rem;
 }

@@ -3,10 +3,11 @@ import React from 'react';
 import './styles/InputOption.css';
 
 
-function InputOption({ Icon, title, color ,userid }) {
+function InputOption({ Icon, title, color ,does}) {
+  // does(title);
   return (
    
-    <div className='inputOption' >
+    <div className='inputOption' onClick = {() => does(title)}>
         <Icon style = {{color: color }} />
         <h4>{title}</h4>
     </div>

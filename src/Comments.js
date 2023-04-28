@@ -7,6 +7,8 @@ import FlipMove from 'react-flip-move';
 import Post from './Post.js';
 import './styles/comments.css'
 import './styles/Post.css'
+import {Link} from 'react-router-dom'
+
 
 export default function Comments(){
     const postbyuserid = useParams();
@@ -41,7 +43,7 @@ userId: "NLlOCgD2ZBS7d2dD6ybAp2EUHIJ2"
           const ans = [];
           comments.map((obj) =>{
             // console.log(obj);
-           ans.push({ comment : obj.comment , name:obj.name, email:obj.email, photoURL:obj.photoUrl});
+           ans.push({ comment : obj.comment , name:obj.name, email:obj.email, photoURL:obj.photoUrl,userid : obj.userId});
           })
 
           setFetched_comments(ans.reverse());
@@ -79,16 +81,13 @@ userId: "NLlOCgD2ZBS7d2dD6ybAp2EUHIJ2"
 
       };
       
-    
-    //Need to search all comments collection with this `postbyuserid` in firebase store 
-    //
       
 
     return (
     <div>
         <form className='post_cmnts'>
             <input type="text" placeholder="Add a comment" value={inputcomment} onChange={e => setInputcomment(e.target.value)} ></input>
-            <button onClick={addComment} type='submit'></button>
+            <button onClick={addComment} type='submit' className = "fa fa-send"></button>
         </form>
         <FlipMove>
         {
@@ -106,9 +105,12 @@ userId: "NLlOCgD2ZBS7d2dD6ybAp2EUHIJ2"
              <Avatar src={com.photoURL}>{com.name[0]}</Avatar>
 
              <div className="post_info">
+            <Link to={ `/user/${com.userid}` } style = {{textDecoration:'none' , color:'black'}}>
               <h2>{com.name}</h2>
               <p>{com.email}</p>
+              </Link>
               <div className = "cmt" >{com.comment}</div>
+            
             </div>
             
             </div>
@@ -119,8 +121,6 @@ userId: "NLlOCgD2ZBS7d2dD6ybAp2EUHIJ2"
         }
         </FlipMove>
     </div>
-
-    // <div><h1>Post by - {JSON.stringify(postbyuserid)} and current user{firebase.auth().currentUser.uid}</h1></div>
 )
 
 }

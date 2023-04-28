@@ -10,7 +10,7 @@ import Sidebar from "./Sidebar";
 import Widgets from "./Widgets";
 import { BrowserRouter , Route , Routes } from "react-router-dom";
 import Comments from './Comments';
-
+import UserProfile from './UserProfile';
 
 function App() {
   const user = useSelector(selectUser);
@@ -51,6 +51,7 @@ function App() {
             <Routes>
             <Route path="/" element={<Feed />} />
             <Route path="/comments/:Userid/:Postid" element={<Comments/>} />
+            <Route path="/user/:Userid" element={<UserProfile/>} />
             </Routes>
           
             <Widgets />
