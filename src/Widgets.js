@@ -4,7 +4,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import {blueGrey } from '@mui/material/colors';
 
 function Widgets() {
 
@@ -29,14 +28,11 @@ function Widgets() {
     
     useEffect(()=>{
 
-        console.log('Fetching news...')
         fetch(`https://newsapi.org/v2/everything?q=jobs&pageSize=6&page=1&apiKey=0a7e28fae8744922b671a61e11b4cd41`).then((res) => res.json()).then((data) => {
         const fetchednews = [];
-        console.log(data);
          for(let i = 0;i<6;i++){
           fetchednews[i] = newsArticle(data.articles[i].title , data.articles[i].url)
          }
-         console.log(fetchednews);
          setNews(fetchednews);
         }).catch((err) => {console.log(err)});
 

@@ -7,9 +7,14 @@
 }
 
 .app__body {
-    display: flex;
+
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap:2rem;
+
     margin-top: 35px;
     max-width: 1200px;
     margin-left: 20px;
     margin-right: 20px;
+    
 }

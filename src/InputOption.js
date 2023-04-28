@@ -3,12 +3,14 @@ import React from 'react';
 import './styles/InputOption.css';
 
 
-function InputOption({ Icon, title, color }) {
+function InputOption({ Icon, title, color ,userid }) {
   return (
-    <div className='inputOption'>
+   
+    <div className='inputOption' >
         <Icon style = {{color: color }} />
         <h4>{title}</h4>
     </div>
+    
   );
 }
 
