@@ -7,9 +7,10 @@ import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import {Link} from 'react-router-dom'
+import YouTube from 'react-youtube';
+
 
 const Post = forwardRef(({Userid ,Postid, name , email, message, photoUrl }, ref) => {
-  // console.log("THe photourl is : "+photoUrl);
   return (
     <div ref={ref} className='post'>
       <div className='post__header'>  
@@ -26,6 +27,13 @@ const Post = forwardRef(({Userid ,Postid, name , email, message, photoUrl }, ref
         <h5>{message.message}</h5>
        {!message.photo?<p></p>: <img src = {message.photo} width="100%" height = "400"></img>}
        {!message.article? <p></p> : <div> {message.article} </div>}
+       {!message.video ? <p></p>:        
+      <YouTube
+       videoId={message.video}
+       autoplay={true}
+       controls={true}
+       />
+       }
       </div>
 
       <div className="post__buttons">

@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice";
 import FlipMove from "react-flip-move";
 import { Avatar } from "@mui/material";
+import YouTube from 'react-youtube';
 
 function Feed() {
   const user = useSelector(selectUser);
@@ -23,6 +24,8 @@ function Feed() {
   const [Article_input, setArticleInput] = useState("");
 
   const [posts, setPosts] = useState([]);
+
+  
 
   useEffect(() => {
     db.collection("posts")
@@ -54,8 +57,12 @@ function Feed() {
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       comments: [],
     });
-    setPhotoInput("");
+    
+    document.getElementById("photo_input").style.display = "none";
+    document.getElementById("video_input").style.display = "none";
+    document.getElementById("article_input").style.display = "none";
     setVideoInput("");
+    setPhotoInput("");
     setArticleInput("");
     setInput("");
   };
@@ -86,6 +93,7 @@ function Feed() {
       return;
     }
   };
+ 
 
   return (
     <div className="feed">
@@ -110,13 +118,23 @@ function Feed() {
         <div className="post_board">
           <div className="feed_input_photo_inboard">
             {photo_input === "" ? (
-              <img></img>
+              ""
             ) : (
               <img src={photo_input} width="100%" height="400"></img>
             )}
           </div>
+
           <div className="feed_input_video_inboard">
-            {video_input === "" ? <img></img> : <h1></h1>}
+            {video_input === "" ? (
+              ""
+            ) : (
+              <YouTube
+              videoId={video_input}
+              height={240}
+              autoplay={true}
+              controls={true}
+            />
+            )}
           </div>
           <div className="feed_input_video_inboard">
             {Article_input === "" ? "" : <div>{Article_input}</div>}
@@ -134,12 +152,29 @@ function Feed() {
         </div>
 
         <div className="feed_video_input" id="video_input">
+          <small>Don't worry if input changes to something else! Just hit save to save the input</small>
           <input
             type="text"
-            placeholder="Enter the url of the Video You want to post!"
+            placeholder="Enter the YouTube link or video ID of the Video you want to post!"
             value={video_input}
+            onChange={(e) =>{ 
+              function getVideoIdFromUrl(url) {
+                const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/)?([a-zA-Z0-9_-]{11})/;
+                const match = url.match(regex);
+                return match ? match[1] : null;
+              }
+              const isYoutubeVideoId = (input) => {
+                const regex = /^[a-zA-Z0-9_-]{11}$/;
+                return regex.test(input);
+              }
+              if(isYoutubeVideoId(e.target.value)){
+                setVideoInput(e.target.value);
+              }
+              else{
+              setVideoInput(getVideoIdFromUrl(e.target.value))}
+             }}
           ></input>
-          <button>Save</button>
+          <button onClick={() => setvisible("Video")}>Save</button>
         </div>
 
         <div className="feed_Article_input" id="article_input">
